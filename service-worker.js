@@ -10,12 +10,12 @@ var filesToCache = [
   'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js',
   'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js',
   'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css',
-  '/stylesheets/style.css',
-  '/stylesheets/images/calender_1.png',
-  '/stylesheets/images/calender_2.png',
-  '/stylesheets/images/solab.jpg',
-  '/index.html',
-  '/scripts/app.js'
+  'https://pdis.github.io/pwa_silofficehour/stylesheets/style.css',
+  'https://pdis.github.io/pwa_silofficehour/stylesheets/images/calender_1.png',
+  'https://pdis.github.io/pwa_silofficehour/stylesheets/images/calender_2.png',
+  'https://pdis.github.io/pwa_silofficehour/stylesheets/images/solab.jpg',
+  'https://pdis.github.io/pwa_silofficehour/index.html',
+  'https://pdis.github.io/pwa_silofficehour/scripts/app.js'
   
 ];
 
