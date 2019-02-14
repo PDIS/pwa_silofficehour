@@ -21,23 +21,20 @@
 
   <!-- <meta http-equiv="refresh" content="10"> -->
 
-  <script src="https://code.jquery.com/jquery-1.12.4.js" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.4/moment.min.js" crossorigin="anonymous"></script>
 
   <!--bootstrap-->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css">
-
-
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
   <link rel="stylesheet" href="stylesheets/style.css">
-
 
 </head>
 
 <body>
-
 
   <main class="main">
 
@@ -45,7 +42,6 @@
       <div class="container" style="padding:10px;">
         <div class="row" style="padding-top:20px;">
           <div class="col-12" style="text-align:center;">
-
 
             <div class="row">
               <div class="col-12" style="text-align:center;">
@@ -63,14 +59,8 @@
                   </div>
                   <div class="hfooter"> （實際情況以現場為準，敬請見諒） </div>
                 </div>
-
-
-
               </div>
               <hr />
-
-             
-
 
               <div id="calenderList" class="row">
                 <div id="calender" v-for="calender in calenders" class="col-sm-6 col-lg-3 col-12 left" style="padding: 0px;">
@@ -81,12 +71,10 @@
                                 <span style='color:black;'>現場拜會：</span><span  v-html="calender.subtitle"></span> </div>
                             <div :class='"calenderBookStatus"+" "+ calender.clsBookStatus'>
                                 <span style='color:black;'>提前預約：</span><span  v-html="calender.bookStatus"></span> </div>
-
                         </div>
                     </div>
                 </div>
             </div>
-
 
             </div>
             <hr>
@@ -98,31 +86,20 @@
               </div>
             </div>
 
-
-
-
-
           </div>
 
-
         </div>
-
 
       </div>
       <hr>
       {% include carousel.html %}
       <hr>
 
-
-
   </main>
-
 
   <script src="scripts/main.js" async></script>
   <!-- Uncomment the line below when ready to test with fake data -->
   <script src="scripts/app.js" async></script>
-
-
 
 </body>
 

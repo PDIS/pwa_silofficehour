@@ -22,17 +22,18 @@ var calender = new Vue({
         var resBook;
         var xhrBook = new XMLHttpRequest();
         xhrBook.open('GET', 'https://aucal.pdis.nat.gov.tw/getReserve');
+        xhrBook.send();
         xhrBook.onload = function () {
             if (xhrBook.status === 200) {
                 resBook = JSON.parse(xhrBook.responseText)
 
-                var booked = [];
+                var booked = {};
 
-                resBook.reservations.forEach(element => {
+                resBook.reservations.forEach(function(element) {
                     var tmpKey = element.startDate.substring(0, element.startDate.indexOf('T'))
 
                     //後臺預約起訖跨多個時段時 前臺顯示並計算出跨幾個已預約時段
-                    let times = new Date(element.bufferedEndDate).getTime()/1000-new Date(element.bufferedStartDate).getTime()/1000;
+                    let times = moment.utc(element.bufferedEndDate).local().valueOf()/1000-moment.utc(element.bufferedStartDate).local().valueOf()/1000;
                     let numOfSlot = Math.ceil(times/(60*60)); // 60min per slot
 
                     if (booked[tmpKey] == null) {
@@ -48,9 +49,9 @@ var calender = new Vue({
                 var MaxBooking = availableTimespans.length; //每日可預約總數
                 const MaxAvailableMonth = 2; //開放可預約月數 本月+N月
 
-                calenders.forEach(element => {
+                calenders.forEach(function(element) {
 
-                    if (booked[element.fullDT] == MaxBooking) {//
+                    if (booked[element.fullDT] == MaxBooking) {
                         element.bookStatus = "已額滿"
                         element.clsBookStatus="red"
                     }
@@ -76,39 +77,27 @@ var calender = new Vue({
             }
         };
 
-        xhrBook.send();
-
-
-        for (i = 0; i < dayList.length; i++) {
-          var element = dayList[i];
-
-
-          //時區轉換
-          var TWStart = new Date(res.items[pointer].start).toLocaleString("en-US", { timeZone: "Asia/Taipei" });
-          var TWEnd = new Date(res.items[pointer].end).toLocaleString("en-US", { timeZone: "Asia/Taipei" });
+        dayList.forEach(function (element) {
 
           if (calenders.length >= 12) {
-            break;
+            return;
           }
-       
 
-          var date = ("0" + (element.getMonth() + 1)).slice(-2) + "-" + ("0" + element.getDate()).slice(-2);//MM/dd
-          var auDate = ("0" + (new Date(TWStart).getMonth() + 1)).slice(-2) + "-" + ("0" + new Date(TWStart).getDate()).slice(-2);
+          var date = ("0" + (element.getMonth() + 1)).slice(-2) + "-" + ("0" + element.getDate()).slice(-2); //MM/dd
+          var auDate = moment.utc(res.items[pointer].start).local().format("MM-DD");
           console.log(date + "  " + auDate);
           if (auDate === (date)) {
             if (res.items[pointer].holiday == true) {//排除假日
               console.log(date + "holiday")
             }
             else {
-
-              var startDT = new Date(TWStart);
-              var endDT = new Date(TWEnd);
+              var startHHmm = moment.utc(res.items[pointer].start).local().hours() < 10 ? "10:00" : moment.utc(res.items[pointer].start).local().format("HH:mm");
               var clsSubtitle = 'calenderSubtitle blue';
-              if (startDT.getHours() != 10) {
+              if (startHHmm != "10:00") {
                 clsSubtitle = 'calenderSubtitle red';
               }
-              var datetime = ("0" + startDT.getHours()).slice(-2) + ":" + ("0" + startDT.getMinutes()).slice(-2) + "～" + ("0" + endDT.getHours()).slice(-2) + ":" + ("0" + endDT.getMinutes()).slice(-2);
-               var objCalender = { fullDT: element.getFullYear() + "-" + date, title: date + "(三)", date: date + "(三)", subtitle: datetime, cls: "calenderGreen", clsSubtitle: clsSubtitle, bookStatus: "" ,clsBookStatus:""}
+              var datetime = startHHmm + "～" + moment.utc(res.items[pointer].end).local().format("HH:mm");                                        
+              var objCalender = { fullDT: element.getFullYear() + "-" + date, title: date + "(三)", date: date + "(三)", subtitle: datetime, cls: "calenderGreen", clsSubtitle: clsSubtitle, bookStatus: "" ,clsBookStatus:""}
               calenders.push(objCalender);
             }
             pointer++;
@@ -117,7 +106,7 @@ var calender = new Vue({
             var objCalender = { fullDT: element.getFullYear() + "-" + date, title: date + "(三)", date: date + "(三)", subtitle: "另有公務行程", cls: "calenderRed", clsSubtitle: "calenderSubtitle red", bookStatus: "",clsBookStatus:"" }
             calenders.push(objCalender);
           }
-        };
+        });
 
 
         var updateDT = new Date(new Date(res.updateTime).toLocaleString("en-US", { timeZone: "Asia/Taipei" }));
@@ -125,7 +114,6 @@ var calender = new Vue({
           el: '#updateDT',
           data() {
             return {
-
               updateDT: "最後更新時間：" + updateDT.getFullYear() + "-" + (updateDT.getMonth() + 1) + "-" + updateDT.getDate() + " " + updateDT.getHours() + ":00 GMT+8"
             }
           }
@@ -136,7 +124,6 @@ var calender = new Vue({
         //err
       }
     };
-
 
     this.calenders = calenders;
   }
