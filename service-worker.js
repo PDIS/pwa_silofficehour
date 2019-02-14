@@ -4,11 +4,12 @@ var cacheName = 'aucalPWA-final-1';
 var filesToCache = [
  
   'https://aucal.pdis.nat.gov.tw/auCal',
-  'https://code.jquery.com/jquery-1.12.4.js',
   'https://cdn.jsdelivr.net/npm/vue',
-  'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js',
-  'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js',
-  'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css',
+  'https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.19.4/moment.min.js',
+  'https://code.jquery.com/jquery-3.3.1.slim.min.js',
+  'https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js',
+  'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js',
+  'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css',
   '/stylesheets/style.css',
   '/stylesheets/images/calender_1.png',
   '/stylesheets/images/calender_2.png',
