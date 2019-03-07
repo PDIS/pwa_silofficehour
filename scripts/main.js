@@ -77,6 +77,14 @@ var calender = new Vue({
             }
         };
 
+        //align data
+        while (moment.utc(res.items[pointer].start).local() < new Date()) {
+            pointer++;
+        }
+        if (new Date().getDay() !== 3) {
+            pointer++;
+        }
+
         dayList.forEach(function (element) {
 
           if (calenders.length >= 12) {
@@ -87,7 +95,8 @@ var calender = new Vue({
           var auDate = moment.utc(res.items[pointer].start).local().format("MM-DD");
           console.log(date + "  " + auDate);
           if (auDate === (date)) {
-            if (res.items[pointer].holiday == true) {//排除假日
+            //勞動節要上工
+            if (res.items[pointer].holiday == true && moment.utc(res.items[pointer].start).local().format("MM-DD") != "05-01") {//排除假日
               console.log(date + "holiday")
             }
             else {
