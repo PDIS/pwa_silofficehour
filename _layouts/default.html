@@ -42,7 +42,7 @@
 
   <main class="main">
 
-    <div role="main">
+    <div id="app" role="main">
       <div class="container" style="padding:10px;">
         <div class="row" style="padding-top:20px;">
           <div class="col-12" style="text-align:center;">
@@ -92,9 +92,8 @@
             <hr>
             <div class="col-12">
               <div id="updateDT" style="float:right;">
-                <div v-html="updateDT">
-                </div>
-                ※此行事曆每三小時更新，實際情形以現場為準
+                最後更新時間：<span v-html="updateTime"></span> GMT+8
+                <br />※此行事曆每三小時更新，實際情形以現場為準
               </div>
             </div>
 
