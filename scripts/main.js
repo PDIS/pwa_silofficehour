@@ -2,7 +2,7 @@ var calender = new Vue({
   el: '#app',
   data: {
     calenders: [],
-    interval_time: 1000 * 60 * 60 * 1, //getCalendar every 3 hrs here every 1 hrs
+    interval_time: 1000 * 60 * 30 * 1, //getCalendar every 3 hrs here every 30 mins
     updateTime: ''
   },
   methods: {
